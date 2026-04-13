@@ -1,0 +1,122 @@
+/* Reset and Base Styles */
+:root {
+  --color-bg: #EAE8E3;
+  --color-text: #1a1a1a;
+  --color-accent: #000000;
+  --color-white: #ffffff;
+  --font-primary: 'Outfit', sans-serif;
+  --font-secondary: 'Inter', sans-serif;
+  --transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+body {
+  font-family: var(--font-secondary);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Custom Cursor */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+  transition: width 0.3s, height 0.3s, background-color 0.3s;
+}
+
+.custom-cursor.active {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--color-accent);
+  mix-blend-mode: normal;
+  backdrop-filter: blur(2px);
+}
+
+/* Utility Classes */
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 4vw;
+}
+
+/* Reveal Utilities setup for GSAP */
+.reveal-text {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  overflow: hidden;
+}
+
+.reveal-inner {
+  display: inline-block;
+  transform: translateY(100%);
+}
+
+/* Dark Mode setup - simple implementation */
+body.dark-mode {
+  --color-bg: #111111;
+  --color-text: #ffffff;
+  --color-accent: #ffffff;
+}
+
+body.dark-mode .custom-cursor {
+  background-color: #ffffff;
+}
