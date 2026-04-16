@@ -85,7 +85,7 @@ onMounted(() => {
 .footer {
   background-color: var(--color-accent);
   color: var(--color-white);
-  padding-top: 100px;
+  padding-top: 80px;
   overflow: hidden;
   position: relative; /* Base para o canvas absoluto */
 }
@@ -104,7 +104,7 @@ onMounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8rem;
+  margin-bottom: 4rem;
 }
 
 .footer-top p {
@@ -131,7 +131,7 @@ onMounted(() => {
 .footer-middle {
   text-align: center;
   margin-bottom: 2rem;
-  margin-top: 5rem; /* Reduzi um pouco para não descer demais */
+  margin-top: 2rem;
 }
 
 .footer-heading {

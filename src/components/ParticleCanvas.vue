@@ -16,9 +16,9 @@ const canvasRef = ref(null);
 let ctx = null;
 let particles = [];
 let animationFrame = null;
-let mouse = { x: -1000, y: -1000, radius: 100 };
+let mouse = { x: -1000, y: -1000, radius: 75 };
 
-const PARTICLE_COUNT = 10000;
+const PARTICLE_COUNT = 8000
 const PARTICLE_SIZE = 1.5;
 const GAP = 12; // Gap between particles in grid
 
@@ -41,7 +41,7 @@ class Particle {
     this.vx = 0;
     this.vy = 0;
     this.radius = PARTICLE_SIZE;
-    this.friction = 0.9;
+    this.friction = 0.7;
     this.stiffness = 0.05;
     this.density = Math.random() * 30 + 1;
   }
@@ -97,7 +97,7 @@ const initParticles = () => {
 
   // Create grid
   const cols = Math.floor(w / GAP);
-  const rows = Math.min(Math.floor(h / GAP), Math.floor((h * 0.45) / GAP)); 
+  const rows = Math.min(Math.floor(h / GAP), Math.floor((h * 0.50) / GAP)); 
   const gridW = cols * GAP;
   const gridH = rows * GAP;
   const startX = (w - gridW) / 2;
@@ -156,7 +156,7 @@ const sampleText = (text) => {
   tempCtx.textBaseline = 'middle';
 
   if (text === 'CHECK') {
-    displayText = '✔';
+    displayText = '(👉ﾟヮﾟ)👉';
     // Colocamos o check no topo da área da grade
     tempCtx.fillText(displayText, centerX, startY + 100); 
   } else {
