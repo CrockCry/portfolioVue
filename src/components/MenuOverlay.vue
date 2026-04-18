@@ -41,8 +41,7 @@ const closeMenu = () => {
 
 watch(() => props.isOpen, async (newVal) => {
   if (newVal) {
-    // Open animation
-    document.body.style.overflow = 'hidden'; // prevent scroll
+    document.body.style.overflow = 'hidden'; 
     
     await nextTick();
     
@@ -60,7 +59,6 @@ watch(() => props.isOpen, async (newVal) => {
         '<0.2'
       );
   } else {
-    // Close animation
     document.body.style.overflow = '';
     
     const tl = gsap.timeline();
@@ -71,8 +69,8 @@ watch(() => props.isOpen, async (newVal) => {
         ease: 'power2.in' 
       })
       .to('.menu-background', { y: '-100%', duration: 0.7, ease: 'power4.inOut' }, '-=0.2')
-      .set('.menu-link, .menu-footer-content', { y: '120%' }) // reset
-      .set('.menu-background', { y: '100%' }) // reset
+      .set('.menu-link, .menu-footer-content', { y: '120%' }) 
+      .set('.menu-background', { y: '100%' }) 
       .to('.menu-overlay', { duration: 0, display: 'none' });
   }
 }, { immediate: false });

@@ -31,8 +31,7 @@ onMounted(() => {
   const contentWidth = contentRef.value.scrollWidth;
   const containerWidth = window.innerWidth;
 
-  // Calculando o quanto precisamos rolar para a esquerda
-  const moveAmount = contentWidth - containerWidth + 100; // 100px padding extra
+  const moveAmount = contentWidth - containerWidth + 100; 
 
   gsap.to(contentRef.value, {
     x: -moveAmount,
@@ -42,7 +41,7 @@ onMounted(() => {
       start: "top top",
       end: () => `+=${moveAmount}`,
       pin: true,
-      scrub: 1, // Faz o movimento seguir o scroll e suavizar
+      scrub: 1, 
       invalidateOnRefresh: true
     }
   });
@@ -53,7 +52,7 @@ onMounted(() => {
 .horizontal-section {
   width: 100%;
   overflow: hidden;
-  background-color: #111; /* Cor escura para quebrar o layout */
+  background-color: #111; 
   color: white;
 }
 
@@ -61,7 +60,7 @@ onMounted(() => {
   height: 100vh;
   display: flex;
   align-items: center;
-  padding-left: 4vw; /* Começa um pouco afastado */
+  padding-left: 4vw; 
 }
 
 .h-scroll-content {

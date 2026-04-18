@@ -16,7 +16,6 @@ import gsap from 'gsap';
 const marqueeRef = ref(null);
 
 onMounted(() => {
-  // Animação infinita do letreiro
   const track = document.querySelector('.marquee-track');
   
   gsap.to(track, {

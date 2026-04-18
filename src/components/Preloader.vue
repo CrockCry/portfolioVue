@@ -23,19 +23,16 @@ const preloaderRef = ref(null);
 const videoRef = ref(null);
 
 onMounted(() => {
-  // Prevent scrolling while preloader is active
   document.body.style.overflow = 'hidden';
   
-  // Failsafe in case video doesn't play or fire ended event
   setTimeout(() => {
     if (preloaderRef.value && preloaderRef.value.style.display !== 'none') {
       onVideoEnded();
     }
-  }, 5000); // 5 seconds max loading time
+  }, 5000); 
 });
 
 const onVideoEnded = () => {
-  // Exit animation using GSAP
   const tl = gsap.timeline({
     onComplete: () => {
       document.body.style.overflow = '';
@@ -43,9 +40,7 @@ const onVideoEnded = () => {
     }
   });
 
-  // Fade out video first
   tl.to(videoRef.value, { opacity: 0, duration: 0.4, ease: 'power2.inOut' })
-    // Slide up the entire preloader revealing the site
     .to(preloaderRef.value, { yPercent: -100, duration: 1.2, ease: 'power4.inOut' }, '+=0.1');
 };
 </script>
@@ -62,7 +57,7 @@ const onVideoEnded = () => {
   align-items: center;
   justify-content: center;
   pointer-events: all;
-  background-color: var(--color-bg); /* Cor de fundo combinando com o site */
+  background-color: var(--color-bg); 
 }
 
 .preloader-bg {
@@ -71,13 +66,13 @@ const onVideoEnded = () => {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #EAE8E3; /* Cor que você pediu - edite aqui se precisar de contraste */
+  background-color: #EAE8E3; 
   z-index: -1;
 }
 
 .video-container {
   width: 100%;
-  max-width: 100%; /* Tamanho base do vídeo */
+  max-width: 100%; 
   aspect-ratio: 16/9;
   display: flex;
   justify-content: center;
@@ -87,6 +82,6 @@ const onVideoEnded = () => {
 .video-container video {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Para não cortar o seu logo animado */
+  object-fit: contain; 
 }
 </style>

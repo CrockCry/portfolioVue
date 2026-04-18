@@ -20,7 +20,7 @@ let mouse = { x: -1000, y: -1000, radius: 75 };
 
 const PARTICLE_COUNT = 8000
 const PARTICLE_SIZE = 1.5;
-const GAP = 12; // Gap between particles in grid
+const GAP = 12; 
 
 class Particle {
   constructor(canvasWidth, canvasHeight) {
@@ -30,11 +30,9 @@ class Particle {
     this.x = Math.random() * canvasWidth;
     this.y = Math.random() * canvasHeight;
     
-    // Stable target (grid or shape)
     this.targetX = this.x;
     this.targetY = this.y;
     
-    // Grid base
     this.baseX = this.x;
     this.baseY = this.y;
     
@@ -58,7 +56,6 @@ class Particle {
     let dy = mouse.y - this.y;
     let distance = Math.sqrt(dx * dx + dy * dy);
     
-    // Mouse Repulsion
     if (distance < mouse.radius) {
       let force = (mouse.radius - distance) / mouse.radius;
       let forceX = (dx / distance) * force * this.density;
@@ -67,7 +64,6 @@ class Particle {
       this.vy -= forceY;
     }
 
-    // Spring Attraction to target
     let ax = (this.targetX - this.x) * this.stiffness;
     let ay = (this.targetY - this.y) * this.stiffness;
     
@@ -95,15 +91,13 @@ const initParticles = () => {
   const h = canvas.height;
   particles = [];
 
-  // Create grid
   const cols = Math.floor(w / GAP);
   const rows = Math.min(Math.floor(h / GAP), Math.floor((h * 0.50) / GAP)); 
   const gridW = cols * GAP;
   const gridH = rows * GAP;
   const startX = (w - gridW) / 2;
-  const startY = 0; // Gruda no topo do Canvas
+  const startY = 0; 
 
-  // Save grid area for text centering
   canvas.gridArea = { startX, startY, gridW, gridH };
 
   for (let i = 0; i < PARTICLE_COUNT; i++) {
@@ -120,8 +114,6 @@ const initParticles = () => {
     }
   }
 
-  // Handle leftover particles that didn't fit in the grid
-  // We send them to the edges or just hide them off-canvas
   for (let i = particleIndex; i < PARTICLE_COUNT; i++) {
     particles[i].setBase(i % 2 === 0 ? -100 : w + 100, Math.random() * h);
   }
@@ -142,7 +134,6 @@ const sampleText = (text) => {
   tempCanvas.width = canvas.width;
   tempCanvas.height = canvas.height;
 
-  // Draw text centered in the same area as the grid
   const { startX, startY, gridW, gridH } = canvas.gridArea;
   const centerX = startX + gridW / 2;
   const centerY = startY + gridH / 2;
@@ -176,7 +167,6 @@ const sampleText = (text) => {
     }
   }
 
-  // Shuffle particles to make movement look more organic
   const shuffledParticles = [...particles].sort(() => Math.random() - 0.5);
 
   shuffledParticles.forEach((p, i) => {
@@ -184,7 +174,6 @@ const sampleText = (text) => {
       p.targetX = points[i].x;
       p.targetY = points[i].y;
     } else {
-      // Particles not in the shape fly to the edges
       p.targetX = p.x < canvas.width / 2 ? -50 : canvas.width + 50;
       p.targetY = Math.random() * canvas.height;
     }
