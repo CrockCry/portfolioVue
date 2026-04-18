@@ -7,35 +7,42 @@
       </div>
       
       <div class="grid">
-        <!-- 4 Placeholders -->
-        <article class="project-card interactive" v-for="i in 4" :key="i" ref="cardsRef">
-          
+        <!-- Dynamic Project Cards -->
+        <article 
+          class="project-card interactive" 
+          v-for="project in projects" 
+          :key="project.id" 
+          ref="cardsRef"
+        >
           <div class="card-media">
-            <!-- Sua Imagem ou VÌdeo Aqui -->
-            <div class="media-placeholder">Img {{ i }}</div>
+            <!-- Project Image -->
+            <div class="media-placeholder">
+              <img :src="project.image" :alt="project.title">
+            </div>
             
             <!-- Hover Overlay -->
             <div class="card-overlay">
               <div class="overlay-left">
-                <span class="overlay-label">WEBSITE</span>
-                <span class="overlay-title">Site Design {{ i }}</span>
+                <span class="overlay-label">{{ project.label }}</span>
+                <span class="overlay-title">{{ project.title }}</span>
               </div>
               <div class="overlay-right">
-                <button class="icon-btn">↗</button>
+                <a :href="project.link" target="_blank" class="icon-link">
+                  <button class="icon-btn">↗</button>
+                </a>
               </div>
             </div>
           </div>
           
           <div class="card-info">
-            <span class="project-title">Odd Ritual {{ i }}</span>
+            <span class="project-title">{{ project.title }}</span>
             <span class="by-text">by</span>
             <div class="author-info">
               <div class="author-avatar" style="background:#111;"></div>
-              <span class="author-name">Malvah</span>
+              <span class="author-name">{{ project.author }}</span>
               <span class="pro-badge">PRO</span>
             </div>
           </div>
-
         </article>
       </div>
     </div>
@@ -47,9 +54,22 @@ import { ref, onMounted } from 'vue';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+// Import images
+import project1 from '../assets/bookShop.png';
+import project2 from '../assets/project-2.png';
+import project3 from '../assets/project-3.png';
+import project4 from '../assets/project-4.png';
+
 gsap.registerPlugin(ScrollTrigger);
 
 const cardsRef = ref([]);
+
+const projects = [
+  { id: 1, title: 'Minimalist Book Shop', author: 'Pedro Vischi', image: project1, label: 'E-COMMERCE', link: 'https://book-shop-two-sigma.vercel.app/' },
+  { id: 2, title: 'Luxury Fashion Editorial', author: 'Vogue Lab', image: project2, label: 'BRANDING', link: '#' },
+  { id: 3, title: 'Scandinavian Furniture', author: 'Nordic Design', image: project3, label: 'E-COMMERCE', link: '#' },
+  { id: 4, title: 'Creative Agency Portfolio', author: 'Pixel Perfect', image: project4, label: 'WEBSITE', link: '#' }
+];
 
 onMounted(() => {
   cardsRef.value.forEach((card, i) => {
@@ -105,7 +125,13 @@ onMounted(() => {
 .project-card {
   display: flex;
   flex-direction: column;
-  cursor: pointer;
+}
+
+.card-link,
+.icon-link {
+  text-decoration: none;
+  color: inherit;
+  pointer-events: all; /* Important since parent has pointer-events: none */
 }
 
 /* MEDIA & OVERLAY */

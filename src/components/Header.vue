@@ -26,7 +26,7 @@ defineEmits(['open-menu']);
 
 <style scoped>
 .header {
-  position: absolute; /* Using absolute so it sits on top but without difference blend if requested, or keep fixed but clean */
+  position: absolute; 
   top: 0;
   left: 0;
   width: 100%;

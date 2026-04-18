@@ -52,12 +52,12 @@ const onVideoEnded = () => {
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 9999;
+  z-index: 10000;
   display: flex;
-  align-items: center;
   justify-content: center;
-  pointer-events: all;
-  background-color: var(--color-bg); 
+  align-items: center;
+  overflow: hidden;
+  background-color: #EAE8E3;
 }
 
 .preloader-bg {
@@ -72,8 +72,7 @@ const onVideoEnded = () => {
 
 .video-container {
   width: 100%;
-  max-width: 100%; 
-  aspect-ratio: 16/9;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -82,6 +81,6 @@ const onVideoEnded = () => {
 .video-container video {
   width: 100%;
   height: 100%;
-  object-fit: contain; 
+  object-fit: cover; 
 }
 </style>

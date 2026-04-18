@@ -14,7 +14,7 @@
       <!-- Main Title -->
       <div class="hero-content">
         <h1 class="hero-title reveal-text" ref="titleRef">
-          <span class="reveal-inner">NEXT STAGE PORTFOLIO</span>
+          <span class="reveal-inner">BOOK SHOP</span>
         </h1>
       </div>
 
@@ -35,7 +35,7 @@
       <!-- Placeholder Mídia Gigante -->
       <div class="hero-media interactive" ref="mediaRef">
         <div class="media-placeholder" data-type="video/image">
-          <img src="../assets/test.jpg" alt="Hero Image">
+          <img src="../assets/bookshop.png" alt="Hero Image">
         </div>
       </div>
       
