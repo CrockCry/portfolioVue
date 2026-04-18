@@ -6,8 +6,7 @@
       <div class="hero-meta reveal-text">
         <span class="reveal-inner">
           <span class="meta-label">Site of the Day</span>
-          <span class="meta-date">Apr 7, 2026</span>
-          <span class="meta-score">Score 7.73 of 10</span>
+          <span class="meta-date">Apr 17, 2026</span>
         </span>
       </div>
 
@@ -23,11 +22,7 @@
         <div class="reveal-inner authors-list">
           <div class="author">
             <div class="author-avatar" style="background:#333;"></div>
-            <span>Pedro Silva <span class="badge">PRO</span></span>
-          </div>
-          <div class="author">
-            <div class="author-avatar" style="background:#555;"></div>
-            <span>Design Team</span>
+            <span>Pedro Vischi <span class="badge">Developer</span></span>
           </div>
         </div>
       </div>
