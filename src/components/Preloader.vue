@@ -77,7 +77,7 @@ const onVideoEnded = () => {
 
 .video-container {
   width: 100%;
-  
+  max-width: 100%; /* Tamanho base do vídeo */
   aspect-ratio: 16/9;
   display: flex;
   justify-content: center;
