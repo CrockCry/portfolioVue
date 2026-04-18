@@ -4,7 +4,7 @@
     <div class="video-container">
       <video 
         ref="videoRef"
-        src="../assets/preload.mp4" 
+        src="../assets/preloadBackground.mp4" 
         autoplay 
         muted 
         playsinline
@@ -77,7 +77,7 @@ const onVideoEnded = () => {
 
 .video-container {
   width: 100%;
-  max-width: 600px; /* Tamanho base do vídeo */
+  
   aspect-ratio: 16/9;
   display: flex;
   justify-content: center;
