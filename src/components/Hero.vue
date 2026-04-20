@@ -29,7 +29,7 @@
 
       <div class="hero-media interactive" ref="mediaRef">
         <div class="media-placeholder" data-type="video/image">
-          <img src="../assets/bookshop.png" alt="Hero Image">
+          <img src="../assets/bookShop.png" alt="Hero Image">
         </div>
       </div>
       
