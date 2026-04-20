@@ -2,7 +2,7 @@
   <section class="hero">
     <div class="hero-inner">
       
-      <!-- SOTD Header Meta -->
+
       <div class="hero-meta reveal-text">
         <span class="reveal-inner">
           <span class="meta-label">Site of the Day</span>
@@ -10,14 +10,14 @@
         </span>
       </div>
 
-      <!-- Main Title -->
+
       <div class="hero-content">
         <h1 class="hero-title reveal-text" ref="titleRef">
           <span class="reveal-inner">BOOK SHOP</span>
         </h1>
       </div>
 
-      <!-- Authors -->
+
       <div class="hero-authors reveal-text">
         <div class="reveal-inner authors-list">
           <div class="author">
@@ -27,7 +27,6 @@
         </div>
       </div>
 
-      <!-- Placeholder Mídia Gigante -->
       <div class="hero-media interactive" ref="mediaRef">
         <div class="media-placeholder" data-type="video/image">
           <img src="../assets/bookshop.png" alt="Hero Image">
@@ -48,7 +47,7 @@ const mediaRef = ref(null);
 onMounted(() => {
   const tl = gsap.timeline();
   
-  // Text Reveal global
+
   const innerTexts = document.querySelectorAll('.hero-inner .reveal-inner');
   
   tl.fromTo(innerTexts, 
@@ -56,7 +55,7 @@ onMounted(() => {
     { y: '0%', duration: 1.2, stagger: 0.1, ease: 'power4.out', delay: 0.2 }
   );
 
-  // Media Reveal (Scale and Fade)
+
   tl.fromTo(mediaRef.value,
     { scale: 0.95, opacity: 0, y: 30 },
     { scale: 1, opacity: 1, y: 0, duration: 1.5, ease: 'power3.out' },
