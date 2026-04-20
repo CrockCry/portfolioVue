@@ -1,16 +1,17 @@
 <template>
-  <div v-if="project" class="project-detail">
+  <div v-if="project" class="project-detail" ref="componentRoot">
     <!-- Header Info -->
     <header class="project-header container">
-      <div class="project-meta reveal-text">
+      <div class="project-meta reveal-text text-center">
         <span class="reveal-inner">
           <span class="category">{{ project.category[locale] }}</span>
           <span class="date">{{ project.date }}</span>
         </span>
       </div>
-      <h1 class="project-title reveal-text">
-        <span class="reveal-inner">{{ project.title }}</span>
-      </h1>
+      
+      <div class="project-title-wrapper reveal-text">
+        <h1 class="project-title reveal-inner">{{ project.title }}</h1>
+      </div>
       
       <div class="project-info reveal-text">
         <p class="project-description reveal-inner">{{ project.description[locale] }}</p>
@@ -103,31 +104,41 @@ const { t, locale } = useI18n();
 
 const project = computed(() => projects.find(p => p.id === route.params.id));
 
-const titleRef = ref(null);
+const componentRoot = ref(null);
 const heroRef = ref(null);
 
 onMounted(() => {
-  if (project.value) {
+  if (project.value && componentRoot.value) {
     const tl = gsap.timeline();
 
-    // Reveal animations
-    tl.fromTo('.reveal-inner', 
+    // Scope GSAP to find only elements within this component's root
+    const innerTexts = componentRoot.value.querySelectorAll('.reveal-inner');
+
+    tl.fromTo(innerTexts, 
       { y: '120%' },
-      { y: '0%', duration: 1.2, stagger: 0.1, ease: 'power4.out', delay: 0.2 }
+      { 
+        y: '0%', 
+        duration: 1.2, 
+        stagger: 0.1, 
+        ease: 'power4.out', 
+        delay: 0.2
+      }
     );
 
-    tl.fromTo(heroRef.value,
-      { scale: 0.9, opacity: 0, y: 50 },
-      { scale: 1, opacity: 1, y: 0, duration: 1.5, ease: 'power3.out' },
-      '-=0.8'
-    );
+    if (heroRef.value) {
+      tl.fromTo(heroRef.value,
+        { scale: 0.9, opacity: 0, y: 50 },
+        { scale: 1, opacity: 1, y: 0, duration: 1.5, ease: 'power3.out' },
+        '-=0.8'
+      );
+    }
   }
 });
 </script>
 
 <style scoped>
 .project-detail {
-  padding-top: 180px;
+  padding-top: 120px;
   padding-bottom: 200px;
   background-color: var(--color-bg);
   min-height: 100vh;
@@ -135,32 +146,64 @@ onMounted(() => {
 
 .project-header {
   text-align: center;
-  margin-bottom: 80px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Local override to fix GSAP cropping and layout issues */
+.reveal-text {
+  overflow: hidden;
+  clip-path: none; /* Removed global clip-path that causes cropping */
+  padding-top: 0.2em; /* Top safety padding */
+  padding-bottom: 0.1em; /* Bottom safety padding */
+}
+
+.reveal-inner {
+  display: block; /* Fixes block-level centering, overriding inline-block */
+  width: 100%;
 }
 
 .project-meta {
   margin-bottom: 2rem;
   font-family: var(--font-secondary);
-  font-size: 0.9rem;
-  letter-spacing: 1px;
+  font-size: 1rem;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  opacity: 0.6;
+  font-weight: 600;
+  opacity: 0.8;
+  line-height: 1.2;
+}
+
+.category {
+  margin-right: 1.5rem;
+  color: var(--color-accent);
+}
+
+.project-title-wrapper {
+  margin-bottom: 40px;
 }
 
 .project-title {
   font-size: clamp(3rem, 10vw, 8rem);
   font-weight: 800;
-  line-height: 0.9;
+  line-height: 1.1;
   letter-spacing: -3px;
-  margin-bottom: 60px;
+  text-transform: uppercase;
+  margin: 0; /* Margin moved to wrapper */
+}
+
+.project-info {
+  margin-bottom: 80px;
 }
 
 .project-description {
-  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
-  line-height: 1.3;
+  font-size: clamp(1.2rem, 2.5vw, 2.2rem);
+  line-height: 1.35;
   font-weight: 500;
-  max-width: 900px;
-  margin: 0 auto 80px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .credits-label {
