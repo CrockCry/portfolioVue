@@ -1,47 +1,43 @@
 <template>
   <div v-if="project" class="project-detail">
-    <!-- Header Section -->
-    <header class="detail-header container">
-      <div class="meta-row reveal-text">
-        <span class="reveal-inner">{{ project.date }} — {{ project.category }}</span>
+    <!-- Header Info -->
+    <header class="project-header container">
+      <div class="project-meta">
+        <span class="category">{{ project.category[locale] }}</span>
+        <span class="date">{{ project.date }}</span>
       </div>
-      <h1 class="project-title reveal-text" ref="titleRef">
-        <span class="reveal-inner">{{ project.title }}</span>
-      </h1>
+      <h1 class="project-title">{{ project.title }}</h1>
+      <p class="project-description">{{ project.description[locale] }}</p>
       
-      <div class="credits-section reveal-text">
-        <div class="reveal-inner credits-list">
-          <div v-for="person in project.credits" :key="person.name" class="person">
-            <img :src="person.avatar" :alt="person.name" class="avatar">
-            <div class="person-info">
-              <span class="name">{{ person.name }}</span>
-              <span class="role">{{ person.role }}</span>
-            </div>
+      <!-- Credits Grid -->
+      <div class="project-credits">
+        <div class="credits-label">{{ t('detail.credits') }}</div>
+        <div class="credits-list">
+          <div v-for="credit in project.credits" :key="credit.name" class="credit-item">
+            <span class="credit-name">{{ credit.name }}</span>
+            <span class="credit-role">{{ credit.role }}</span>
           </div>
         </div>
       </div>
     </header>
 
     <!-- Hero Media -->
-    <section class="hero-media-container container">
-      <div class="hero-media-inner interactive" ref="heroRef">
-        <img :src="project.image" :alt="project.title" class="main-image">
+    <section class="project-hero container">
+      <div class="hero-media-wrapper">
+        <img :src="project.image" :alt="project.title">
       </div>
     </section>
 
-    <!-- Description & Stats -->
-    <section class="project-info container">
-      <div class="info-grid">
-        <div class="description-col">
-          <p class="large-text">{{ project.description }}</p>
-        </div>
-        <div class="stats-col" v-if="project.stats">
-          <div v-for="(val, key) in project.stats" :key="key" class="stat-item">
-            <span class="stat-label">{{ key }}</span>
-            <div class="stat-bar-bg">
-              <div class="stat-bar-fill" :style="{ width: (val * 10) + '%' }"></div>
-            </div>
-            <span class="stat-value">{{ val }}</span>
+    <!-- Project Metrics (Stats) -->
+    <section class="project-metrics container" v-if="project.stats">
+      <div class="metrics-grid">
+        <div v-for="(val, label) in project.stats" :key="label" class="metric-item">
+          <div class="metric-info">
+            <span class="metric-label">{{ label }}</span>
+            <span class="metric-value">{{ val }}</span>
+          </div>
+          <div class="metric-bar">
+            <div class="metric-fill" :style="{ width: (val * 10) + '%' }"></div>
           </div>
         </div>
       </div>
@@ -49,15 +45,15 @@
 
     <!-- Elements Gallery -->
     <section class="elements-gallery container" v-if="project.features">
-      <h2 class="section-label">Selected Elements</h2>
+      <h2 class="section-label">{{ t('detail.elements') }}</h2>
       <div class="elements-grid">
-        <div v-for="feat in project.features" :key="feat.title" class="element-card">
+        <div v-for="feat in project.features" :key="feat.title[locale]" class="element-card">
           <div class="element-media">
-            <img :src="feat.image" :alt="feat.title">
+            <img :src="feat.image" :alt="feat.title[locale]">
           </div>
           <div class="element-info">
-            <h3>{{ feat.title }}</h3>
-            <p>{{ feat.description }}</p>
+            <h3>{{ feat.title[locale] }}</h3>
+            <p>{{ feat.description[locale] }}</p>
           </div>
         </div>
       </div>
@@ -65,12 +61,8 @@
 
     <!-- Built With Section -->
     <section class="built-with section container" v-if="project.tags">
-      <p class="section-subtitle">This website was built with...</p>
+      <p class="section-subtitle">{{ t('detail.builtWith') }}</p>
       <div class="tags-container">
-        <!-- Visual decorators for Awwwards style -->
-        <!-- <div class="tag-pill decorator dark"></div>
-        <div class="tag-pill decorator light"></div> -->
-        
         <div v-for="tag in project.tags" :key="tag.label" class="tag-pill">
           {{ tag.label }}
         </div>
@@ -79,23 +71,27 @@
 
     <!-- Bottom Sticky Menu -->
     <nav class="bottom-menu-pill">
-      <router-link to="/" class="pill-btn secondary">Back to Projects</router-link>
-      <a :href="project.link" target="_blank" class="pill-btn primary">Visit Live Site ↗</a>
+      <router-link to="/" class="pill-btn secondary">{{ t('detail.back') }}</router-link>
+      <a :href="project.link" target="_blank" class="pill-btn primary">{{ t('detail.visit') }}</a>
     </nav>
   </div>
-  <div v-else class="loading-state container">
-    <p>Project not found...</p>
-    <router-link to="/">Return Home</router-link>
+
+  <div v-else class="project-not-found container">
+    <p>{{ t('detail.not_found') }}</p>
+    <router-link to="/">{{ t('detail.return_home') }}</router-link>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { projects } from '../data/projects';
+import { useI18n } from '../i18n';
 import gsap from 'gsap';
 
 const route = useRoute();
+const { t, locale } = useI18n();
+
 const project = computed(() => projects.find(p => p.id === route.params.id));
 
 const titleRef = ref(null);

@@ -2,8 +2,8 @@
   <section class="project-grid">
     <div class="container">
       <div class="grid-header">
-        <span class="grid-category">Winners</span>
-        <h2>Recent Sites<br>of the Day.</h2>
+        <span class="grid-category">{{ t('grid.category') }}</span>
+        <h2 v-html="t('grid.title')"></h2>
       </div>
       
       <div class="grid">
@@ -24,7 +24,7 @@
             <!-- Hover Overlay -->
             <div class="card-overlay">
               <div class="overlay-left">
-                <span class="overlay-label">{{ project.label }}</span>
+                <span class="overlay-label">{{ t(project.label) }}</span>
                 <span class="overlay-title">{{ project.title }}</span>
               </div>
               <div class="overlay-right">
@@ -37,7 +37,7 @@
           
           <div class="card-info">
             <span class="project-title">{{ project.title }}</span>
-            <span class="by-text">by</span>
+            <span class="by-text">{{ t('grid.by') }}</span>
             <div class="author-info">
               <div class="author-avatar" style="background:#111;"></div>
               <span class="author-name">{{ project.author }}</span>
@@ -54,11 +54,13 @@
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { projects } from '../data/projects';
+import { useI18n } from '../i18n';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const { t } = useI18n();
 const router = useRouter();
 const cardsRef = ref([]);
 

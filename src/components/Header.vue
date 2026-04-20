@@ -6,22 +6,40 @@
       </div>
       <nav class="nav">
         <ul>
-          <li><a href="#" class="interactive">Explore</a></li>
-          <li><a href="#" class="interactive">Directory</a></li>
-          <li><a href="#" class="interactive">Academy</a></li>
-          <li><a href="#" class="interactive">Conferences</a></li>
+          <li><a href="#" class="interactive">{{ t('nav.explore') }}</a></li>
+          <li><a href="#" class="interactive">{{ t('nav.directory') }}</a></li>
+          <li><a href="#" class="interactive">{{ t('nav.academy') }}</a></li>
+          <li><a href="#" class="interactive">{{ t('nav.conferences') }}</a></li>
         </ul>
       </nav>
       <div class="header-actions">
+        <!-- Language Switcher -->
+        <div class="lang-switch">
+          <button 
+            class="lang-btn" 
+            :class="{ active: locale === 'pt-br' }" 
+            @click="setLocale('pt-br')"
+          >PT</button>
+          <span class="lang-divider">|</span>
+          <button 
+            class="lang-btn" 
+            :class="{ active: locale === 'en' }" 
+            @click="setLocale('en')"
+          >EN</button>
+        </div>
+        
         <!-- Emitting open-menu to App.vue -->
-        <button class="menu-btn interactive" @click="$emit('open-menu')">Menu <span class="hamburger"></span></button>
+        <button class="menu-btn interactive" @click="$emit('open-menu')">{{ t('nav.menu') }} <span class="hamburger"></span></button>
       </div>
     </div>
   </header>
 </template>
 
 <script setup>
+import { useI18n } from '../i18n';
+
 defineEmits(['open-menu']);
+const { t, locale, setLocale } = useI18n();
 </script>
 
 <style scoped>
@@ -78,6 +96,44 @@ defineEmits(['open-menu']);
 .nav a:hover::after {
   transform: scaleX(1);
   transform-origin: left;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-secondary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  opacity: 0.4;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.lang-btn.active {
+  opacity: 1;
+}
+
+.lang-btn:hover {
+  opacity: 0.8;
+}
+
+.lang-divider {
+  opacity: 0.2;
 }
 
 .menu-btn {

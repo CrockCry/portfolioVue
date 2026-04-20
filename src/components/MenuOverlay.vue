@@ -4,9 +4,24 @@
     <div class="container menu-inner">
       <nav class="menu-nav">
         <ul>
-          <li v-for="(link, index) in links" :key="index" class="menu-item">
+          <li class="menu-item">
             <div class="reveal-text">
-              <a href="#" class="reveal-inner menu-link interactive" @click="closeMenu">{{ link }}</a>
+              <a href="#" class="reveal-inner menu-link interactive" @click="closeMenu">{{ t('menu.home') }}</a>
+            </div>
+          </li>
+          <li class="menu-item">
+            <div class="reveal-text">
+              <a href="#" class="reveal-inner menu-link interactive" @click="closeMenu">{{ t('menu.projects') }}</a>
+            </div>
+          </li>
+          <li class="menu-item">
+            <div class="reveal-text">
+              <a href="#" class="reveal-inner menu-link interactive" @click="closeMenu">{{ t('menu.studio') }}</a>
+            </div>
+          </li>
+          <li class="menu-item">
+            <div class="reveal-text">
+              <a href="#" class="reveal-inner menu-link interactive" @click="closeMenu">{{ t('menu.contact') }}</a>
             </div>
           </li>
         </ul>
@@ -14,7 +29,7 @@
       <div class="menu-footer">
         <div class="reveal-text">
           <div class="reveal-inner menu-footer-content">
-            <p>Ready to start?</p>
+            <p>{{ t('menu.ready') }}</p>
             <a href="mailto:hello@nextstage.com" class="interactive">hello@nextstage.com</a>
           </div>
         </div>
@@ -25,6 +40,7 @@
 
 <script setup>
 import { watch, nextTick } from 'vue';
+import { useI18n } from '../i18n';
 import gsap from 'gsap';
 
 const props = defineProps({
@@ -32,8 +48,7 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['close']);
-
-const links = ['Home', 'Projects', 'Studio', 'Contact'];
+const { t } = useI18n();
 
 const closeMenu = () => {
   emit('close');

@@ -3,14 +3,14 @@
     <ParticleCanvas :targetShape="currentShape" />
     <div class="container footer-inner">
       <div class="footer-top">
-        <p>Gostou do que viu?<br>Vamos construir algo incrível.</p>
+        <p v-html="t('footer.cta.top') + '<br>' + t('footer.cta.bottom')"></p>
         <button 
           class="contact-btn interactive magnetic-btn" 
           ref="btnRef"
           @mouseenter="currentShape = 'CHECK'"
           @mouseleave="currentShape = ''"
         >
-          <span class="btn-text">Começar Projeto</span>
+          <span class="btn-text">{{ t('footer.btn') }}</span>
         </button>
       </div>
       
@@ -19,7 +19,7 @@
       </div>
       
       <div class="footer-bottom">
-        <p>&copy; 2026 Next Stage. Todos os direitos reservados.</p>
+        <p>&copy; 2026 Next Stage. {{ t('footer.copy') }}</p>
         <div class="social-links">
           <a href="#" class="interactive">Instagram</a>
           <a href="#" class="interactive">Github</a>
@@ -32,9 +32,11 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
+import { useI18n } from '../i18n';
 import gsap from 'gsap';
 import ParticleCanvas from './ParticleCanvas.vue';
 
+const { t } = useI18n();
 const btnRef = ref(null);
 const currentShape = ref('');
 

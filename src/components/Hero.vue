@@ -5,7 +5,7 @@
 
       <div class="hero-meta reveal-text">
         <span class="reveal-inner">
-          <span class="meta-label">Site of the Day</span>
+          <span class="meta-label">{{ t('hero.sod') }}</span>
           <span class="meta-date">Apr 17, 2026</span>
         </span>
       </div>
@@ -22,7 +22,7 @@
         <div class="reveal-inner authors-list">
           <div class="author">
             <div class="author-avatar" style="background:#333;"></div>
-            <span>Pedro Vischi <span class="badge">Developer</span></span>
+            <span>Pedro Vischi <span class="badge">{{ t('hero.developer') }}</span></span>
           </div>
         </div>
       </div>
@@ -39,8 +39,10 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useI18n } from '../i18n';
 import gsap from 'gsap';
 
+const { t } = useI18n();
 const titleRef = ref(null);
 const mediaRef = ref(null);
 
