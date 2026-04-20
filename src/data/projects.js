@@ -1,15 +1,15 @@
 import project1 from '../assets/bookShop.png';
-import project2 from '../assets/project-2.png';
+import project2 from '../assets/TradiPain.png';
 import project3 from '../assets/project-3.png';
 import project4 from '../assets/project-4.png';
 
 export const projects = [
-  { 
-    id: 'book-shop', 
-    title: 'Minimalist Book Shop', 
-    author: 'Pedro Vischi', 
-    image: project1, 
-    label: 'label.ecommerce', 
+  {
+    id: 'book-shop',
+    title: 'Minimalist Book Shop',
+    author: 'Pedro Vischi',
+    image: project1,
+    label: 'label.ecommerce',
     link: 'https://book-shop-two-sigma.vercel.app/',
     category: {
       'pt-br': 'E-commerce & Varejo',
@@ -30,21 +30,21 @@ export const projects = [
       content: 7.5
     },
     features: [
-      { 
-        title: { 'pt-br': 'Layout Editorial', 'en': 'Editorial Layout' }, 
-        description: { 
+      {
+        title: { 'pt-br': 'Layout Editorial', 'en': 'Editorial Layout' },
+        description: {
           'pt-br': 'Tipografia grande e espaços generosos para imitar uma revista física.',
           'en': 'Large typography and generous whitespace to mimic a physical magazine.'
         },
-        image: project1 
+        image: project1
       },
-      { 
-        title: { 'pt-br': 'Interações Fluidas', 'en': 'Smooth Interactions' }, 
-        description: { 
+      {
+        title: { 'pt-br': 'Interações Fluidas', 'en': 'Smooth Interactions' },
+        description: {
           'pt-br': 'Transições suaves entre estados usando GSAP e Lenis.',
           'en': 'Fluid transitions between states using GSAP and Lenis.'
         },
-        image: project1 
+        image: project1
       }
     ],
     tags: [
@@ -58,36 +58,65 @@ export const projects = [
       { label: 'Figma' }
     ]
   },
-  { 
-    id: 'luxury-fashion', 
-    title: 'Luxury Fashion Editorial', 
-    author: 'Vogue Lab', 
-    image: project2, 
-    label: 'label.branding', 
-    link: '#',
+  {
+    id: 'trad-pain',
+    title: 'Os Tradicionais Hub',
+    author: 'Pedro Vischi',
+    image: project2,
+    label: 'label.website',
+    link: 'https://trad-pain.vercel.app/',
     category: {
-      'pt-br': 'Moda & Beleza',
-      'en': 'Fashion & Beauty'
+      'pt-br': 'E-sports & Comunidades',
+      'en': 'E-sports & Communities'
     },
     date: 'Mar 2026',
     description: {
-      'pt-br': 'Uma vitrine de moda de vanguarda que mistura visuais de alto contraste com narrativa interativa.',
-      'en': 'An avant-garde fashion showcase blending high-contrast visuals with interactive storytelling.'
+      'pt-br': 'Um portal completo para a comunidade da paiN Gaming, integrando estatísticas em tempo real, gestão de elenco e uma experiência de torcida engajadora.',
+      'en': 'A complete portal for the paiN Gaming community, integrating real-time stats, roster management, and an engaging fan experience.'
     },
+    credits: [
+      { name: 'Pedro Vischi', role: 'Full Stack Dev', avatar: '' }
+    ],
+    stats: {
+      integration: 9.5,
+      performance: 8.8,
+      community: 9.2,
+      backend: 9.0
+    },
+    features: [
+      {
+        title: { 'pt-br': 'Integração Leaguepedia', 'en': 'Leaguepedia Integration' },
+        description: {
+          'pt-br': 'Consumo automatizado de dados de partidas e jogadores via API externa.',
+          'en': 'Automated consumption of match and player data via external API.'
+        },
+        image: project2
+      },
+      {
+        title: { 'pt-br': 'Painel Administrativo', 'en': 'Admin Dashboard' },
+        description: {
+          'pt-br': 'Gestão dinâmica de conteúdo com Supabase e sistema de Drag and Drop.',
+          'en': 'Dynamic content management with Supabase and Drag and Drop system.'
+        },
+        image: project2
+      }
+    ],
     tags: [
-      { label: 'Vue.js' },
-      { label: 'GSAP' },
-      { label: 'Three.js' },
-      { label: 'Editorial' },
-      { label: 'High-Contrast' }
+      { label: 'React' },
+      { label: 'Tailwind CSS' },
+      { label: 'Express' },
+      { label: 'Supabase' },
+      { label: 'REST API' },
+      { label: 'Cloudinary' },
+      { label: 'DnD Kit' }
     ]
   },
-  { 
-    id: 'scandinavian-furniture', 
-    title: 'Scandinavian Furniture', 
-    author: 'Nordic Design', 
-    image: project3, 
-    label: 'label.ecommerce', 
+  {
+    id: 'scandinavian-furniture',
+    title: 'Scandinavian Furniture',
+    author: 'Nordic Design',
+    image: project3,
+    label: 'label.ecommerce',
     link: '#',
     category: {
       'pt-br': 'Interiores',
@@ -106,12 +135,12 @@ export const projects = [
       { label: 'Minimal' }
     ]
   },
-  { 
-    id: 'creative-agency', 
-    title: 'Creative Agency Portfolio', 
-    author: 'Pixel Perfect', 
-    image: project4, 
-    label: 'label.website', 
+  {
+    id: 'creative-agency',
+    title: 'Creative Agency Portfolio',
+    author: 'Pixel Perfect',
+    image: project4,
+    label: 'label.website',
     link: '#',
     category: {
       'pt-br': 'Corporativo',
