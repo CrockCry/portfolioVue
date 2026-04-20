@@ -2,20 +2,29 @@
   <div v-if="project" class="project-detail">
     <!-- Header Info -->
     <header class="project-header container">
-      <div class="project-meta">
-        <span class="category">{{ project.category[locale] }}</span>
-        <span class="date">{{ project.date }}</span>
+      <div class="project-meta reveal-text">
+        <span class="reveal-inner">
+          <span class="category">{{ project.category[locale] }}</span>
+          <span class="date">{{ project.date }}</span>
+        </span>
       </div>
-      <h1 class="project-title">{{ project.title }}</h1>
-      <p class="project-description">{{ project.description[locale] }}</p>
+      <h1 class="project-title reveal-text">
+        <span class="reveal-inner">{{ project.title }}</span>
+      </h1>
+      
+      <div class="project-info reveal-text">
+        <p class="project-description reveal-inner">{{ project.description[locale] }}</p>
+      </div>
       
       <!-- Credits Grid -->
-      <div class="project-credits">
-        <div class="credits-label">{{ t('detail.credits') }}</div>
-        <div class="credits-list">
-          <div v-for="credit in project.credits" :key="credit.name" class="credit-item">
-            <span class="credit-name">{{ credit.name }}</span>
-            <span class="credit-role">{{ credit.role }}</span>
+      <div class="project-credits reveal-text">
+        <div class="reveal-inner">
+          <div class="credits-label">{{ t('detail.credits') }}</div>
+          <div class="credits-list">
+            <div v-for="credit in project.credits" :key="credit.name" class="credit-item">
+              <span class="credit-name">{{ credit.name }}</span>
+              <span class="credit-role">{{ credit.role }}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -23,7 +32,7 @@
 
     <!-- Hero Media -->
     <section class="project-hero container">
-      <div class="hero-media-wrapper">
+      <div class="hero-media-wrapper interactive" ref="heroRef">
         <img :src="project.image" :alt="project.title">
       </div>
     </section>
@@ -124,12 +133,12 @@ onMounted(() => {
   min-height: 100vh;
 }
 
-.detail-header {
+.project-header {
   text-align: center;
   margin-bottom: 80px;
 }
 
-.meta-row {
+.project-meta {
   margin-bottom: 2rem;
   font-family: var(--font-secondary);
   font-size: 0.9rem;
@@ -146,6 +155,22 @@ onMounted(() => {
   margin-bottom: 60px;
 }
 
+.project-description {
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  line-height: 1.3;
+  font-weight: 500;
+  max-width: 900px;
+  margin: 0 auto 80px;
+}
+
+.credits-label {
+  font-family: var(--font-secondary);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  opacity: 0.4;
+  margin-bottom: 1.5rem;
+}
+
 .credits-list {
   display: flex;
   justify-content: center;
@@ -153,108 +178,90 @@ onMounted(() => {
   flex-wrap: wrap;
 }
 
-.person {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-  background: #ddd;
-}
-
-.person-info {
+.credit-item {
   display: flex;
   flex-direction: column;
   text-align: left;
 }
 
-.person-info .name {
+.credit-name {
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
-.person-info .role {
-  font-size: 0.75rem;
+.credit-role {
+  font-size: 0.8rem;
   opacity: 0.6;
 }
 
 /* Hero Media */
-.hero-media-container {
+.project-hero {
   margin-bottom: 120px;
 }
 
-.hero-media-inner {
+.hero-media-wrapper {
   width: 100%;
-  height: 85vh;
+  aspect-ratio: 16/9;
   border-radius: 24px;
   overflow: hidden;
   background: #eee;
 }
 
-.main-image {
+.hero-media-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* Project Info */
-.project-info {
+/* Project Metrics (Stats) */
+.project-metrics {
   margin-bottom: 120px;
 }
 
-.info-grid {
+.metrics-grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 5rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-.large-text {
-  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
-  line-height: 1.3;
-  font-weight: 500;
-}
-
-.stats-col {
+.metric-item {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0.75rem;
 }
 
-.stat-item {
-  display: grid;
-  grid-template-columns: 80px 1fr 30px;
-  align-items: center;
-  gap: 1rem;
+.metric-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
-.stat-label {
+.metric-label {
   font-size: 0.7rem;
   text-transform: uppercase;
   font-weight: 700;
   opacity: 0.5;
 }
 
-.stat-bar-bg {
+.metric-value {
+  font-size: 1.2rem;
+  font-family: var(--font-primary);
+  font-weight: 800;
+}
+
+.metric-bar {
   height: 4px;
   background: rgba(0,0,0,0.05);
   border-radius: 2px;
+  overflow: hidden;
 }
 
-.stat-bar-fill {
+.metric-fill {
   height: 100%;
   background: var(--color-accent);
   border-radius: 2px;
-}
-
-.stat-value {
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-align: right;
 }
 
 /* Elements Gallery */
@@ -306,7 +313,7 @@ onMounted(() => {
 
 /* Built With Section */
 .built-with {
-  padding: 100px 0;
+  padding-top: 100px;
   text-align: center;
 }
 
