@@ -59,7 +59,7 @@ defineEmits(['open-menu']);
   letter-spacing: 0px;
   position: relative;
   overflow: hidden;
-  text-transform: none; /* Awwwards text is 'Explore v' not uppercase */
+  text-transform: none; 
 }
 
 .nav a::after {

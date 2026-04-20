@@ -7,12 +7,11 @@
   
   <AppHeader @open-menu="isMenuOpen = true" />
   
-  <main>
-    <Hero />
-    <ProjectGrid />
-    <MarqueeSection />
-    <HorizontalScroll />
-  </main>
+  <router-view v-slot="{ Component }">
+    <transition name="page-fade" mode="out-in">
+      <component :is="Component" />
+    </transition>
+  </router-view>
 
   <AppFooter />
 </template>
@@ -21,10 +20,6 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import gsap from 'gsap';
 import AppHeader from './components/Header.vue';
-import Hero from './components/Hero.vue';
-import ProjectGrid from './components/ProjectGrid.vue';
-import MarqueeSection from './components/MarqueeSection.vue';
-import HorizontalScroll from './components/HorizontalScroll.vue';
 import AppFooter from './components/Footer.vue';
 import MenuOverlay from './components/MenuOverlay.vue';
 import Preloader from './components/Preloader.vue';

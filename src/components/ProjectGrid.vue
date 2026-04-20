@@ -13,6 +13,7 @@
           v-for="project in projects" 
           :key="project.id" 
           ref="cardsRef"
+          @click="openProject(project.id)"
         >
           <div class="card-media">
             <!-- Project Image -->
@@ -27,7 +28,7 @@
                 <span class="overlay-title">{{ project.title }}</span>
               </div>
               <div class="overlay-right">
-                <a :href="project.link" target="_blank" class="icon-link">
+                <a :href="project.link" target="_blank" class="icon-link" @click.stop>
                   <button class="icon-btn">↗</button>
                 </a>
               </div>
@@ -51,25 +52,19 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import { projects } from '../data/projects';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Import images
-import project1 from '../assets/bookShop.png';
-import project2 from '../assets/project-2.png';
-import project3 from '../assets/project-3.png';
-import project4 from '../assets/project-4.png';
-
 gsap.registerPlugin(ScrollTrigger);
 
+const router = useRouter();
 const cardsRef = ref([]);
 
-const projects = [
-  { id: 1, title: 'Minimalist Book Shop', author: 'Pedro Vischi', image: project1, label: 'E-COMMERCE', link: 'https://book-shop-two-sigma.vercel.app/' },
-  { id: 2, title: 'Luxury Fashion Editorial', author: 'Vogue Lab', image: project2, label: 'BRANDING', link: '#' },
-  { id: 3, title: 'Scandinavian Furniture', author: 'Nordic Design', image: project3, label: 'E-COMMERCE', link: '#' },
-  { id: 4, title: 'Creative Agency Portfolio', author: 'Pixel Perfect', image: project4, label: 'WEBSITE', link: '#' }
-];
+const openProject = (id) => {
+  router.push(`/project/${id}`);
+};
 
 onMounted(() => {
   cardsRef.value.forEach((card, i) => {
@@ -102,9 +97,9 @@ onMounted(() => {
 
 .grid-category {
   font-family: var(--font-secondary);
-  font-size: 0.85rem;
+  font-size: 0.85rem; 
   font-weight: 500;
-  color: #C26339; /* Typical awwwards subtle orange/red for Winners */
+  color: #C26339; 
   text-transform: capitalize;
 }
 
