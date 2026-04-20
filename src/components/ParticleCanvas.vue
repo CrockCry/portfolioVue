@@ -208,8 +208,12 @@ onMounted(() => {
 
   const handleMouseMove = (e) => {
     const rect = canvas.getBoundingClientRect();
-    mouse.x = e.clientX - rect.left;
-    mouse.y = e.clientY - rect.top;
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    
+    // Calcula x e y mapeando as coordenadas da viewport para a resolução interna do canvas
+    mouse.x = (e.clientX - rect.left) * scaleX;
+    mouse.y = (e.clientY - rect.top) * scaleY;
   };
 
   const handleMouseLeave = () => {
