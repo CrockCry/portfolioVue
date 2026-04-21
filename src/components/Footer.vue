@@ -4,14 +4,16 @@
     <div class="container footer-inner">
       <div class="footer-top">
         <p v-html="t('footer.cta.top') + '<br>' + t('footer.cta.bottom')"></p>
-        <button 
+        <router-link 
+          to="/contact" 
           class="contact-btn interactive magnetic-btn" 
-          ref="btnRef"
-          @mouseenter="currentShape = 'CHECK'"
+          ref="btnRef" 
+          @mouseenter="currentShape = 'CHECK'" 
           @mouseleave="currentShape = ''"
+          @click="handleContactClick"
         >
           <span class="btn-text">{{ t('footer.btn') }}</span>
-        </button>
+        </router-link>
       </div>
       
       <div class="footer-middle">
@@ -33,23 +35,36 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useI18n } from '../i18n';
+import { useRoute } from 'vue-router';
 import gsap from 'gsap';
 import ParticleCanvas from './ParticleCanvas.vue';
 
 const { t } = useI18n();
+const route = useRoute();
 const btnRef = ref(null);
 const currentShape = ref('');
 
+const handleContactClick = (e) => {
+  if (route.path === '/contact') {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+};
+
 onMounted(() => {
-  // Magnetic Button Effect
-  const btn = btnRef.value;
+  const btn = btnRef.value?.$el;
+  if (!btn) return;
+  
   const text = btn.querySelector('.btn-text');
+  if (!text) return;
 
   const onMouseMove = (e) => {
     const rect = btn.getBoundingClientRect();
     const h = rect.width / 2;
     
-    // Calcula distância da borda
     const x = e.clientX - rect.left - h;
     const y = e.clientY - rect.top - h;
 
@@ -89,17 +104,17 @@ onMounted(() => {
   color: var(--color-white);
   padding-top: 80px;
   overflow: hidden;
-  position: relative; /* Base para o canvas absoluto */
+  position: relative; 
 }
 
 .footer-inner {
   position: relative;
-  z-index: 2; /* Fica por cima das partículas */
-  pointer-events: none; /* Deixa o mouse chegar nos botões/links mas ignora o container vazio */
+  z-index: 2; 
+  pointer-events: none; 
 }
 
 .footer-inner > * {
-  pointer-events: all; /* Ativa eventos nos botões e links */
+  pointer-events: all; 
 }
 
 .footer-top {
@@ -127,7 +142,10 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   text-transform: uppercase;
+  line-height: 1.2;
+  padding: 20px;
 }
 
 .footer-middle {

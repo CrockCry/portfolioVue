@@ -18,7 +18,7 @@ let particles = [];
 let animationFrame = null;
 let mouse = { x: -1000, y: -1000, radius: 75 };
 
-const PARTICLE_COUNT = 8000
+const PARTICLE_COUNT = 15000;
 const PARTICLE_SIZE = 1.5;
 const GAP = 12; 
 
@@ -148,7 +148,6 @@ const sampleText = (text) => {
 
   if (text === 'CHECK') {
     displayText = '(👉ﾟヮﾟ)👉';
-    // Colocamos o check no topo da área da grade
     tempCtx.fillText(displayText, centerX, startY + 100); 
   } else {
     tempCtx.fillText(displayText, centerX, centerY);
@@ -197,7 +196,7 @@ onMounted(() => {
   
   const resize = () => {
     const parent = canvas.parentElement;
-    canvas.width = parent.clientWidth;
+    canvas.width = window.innerWidth;
     canvas.height = parent.clientHeight;
     initParticles();
   };

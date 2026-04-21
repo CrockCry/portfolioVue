@@ -1,5 +1,5 @@
 <template>
-  <Preloader @complete="onPreloaderComplete" />
+  <Preloader v-if="!hasLoadedSession" @complete="onPreloaderComplete" />
   
   <div class="custom-cursor" ref="cursor"></div>
   
@@ -7,13 +7,19 @@
   
   <AppHeader @open-menu="isMenuOpen = true" />
   
-  <router-view v-slot="{ Component }">
-    <transition name="page-fade" mode="out-in">
-      <component :is="Component" />
-    </transition>
-  </router-view>
+  <main :class="{ 'is-loading': !hasLoadedSession }">
+    <router-view v-slot="{ Component }">
+      <transition 
+        name="page-fade" 
+        mode="out-in"
+      >
+        <component :is="Component" />
+      </transition>
+    </router-view>
+  </main>
 
   <AppFooter />
+  <FloatingContact />
 </template>
 
 <script setup>
@@ -23,14 +29,15 @@ import AppHeader from './components/Header.vue';
 import AppFooter from './components/Footer.vue';
 import MenuOverlay from './components/MenuOverlay.vue';
 import Preloader from './components/Preloader.vue';
+import FloatingContact from './components/FloatingContact.vue';
 
 const cursor = ref(null);
 const isMenuOpen = ref(false);
-const isLoaded = ref(false);
+const hasLoadedSession = ref(!!sessionStorage.getItem('portfolio_loaded'));
 
 const onPreloaderComplete = () => {
-  isLoaded.value = true;
-  // Lenis may need a resize trigger logic if locked, but removing overflow:hidden in Preloader handles most layout shifts
+  sessionStorage.setItem('portfolio_loaded', 'true');
+  hasLoadedSession.value = true;
 };
 
 onMounted(() => {

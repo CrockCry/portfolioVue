@@ -6,14 +6,12 @@
       </div>
       <nav class="nav">
         <ul>
-          <li><a href="#" class="interactive">{{ t('nav.explore') }}</a></li>
-          <li><router-link to="/directory" class="interactive">{{ t('nav.directory') }}</router-link></li>
-          <li><a href="#" class="interactive">{{ t('nav.academy') }}</a></li>
-          <li><a href="#" class="interactive">{{ t('nav.conferences') }}</a></li>
+          <li><router-link to="/" class="interactive">{{ t('nav.home') }}</router-link></li>
+          <li><router-link to="/projects" class="interactive">{{ t('nav.projects') }}</router-link></li>
+          <li><router-link to="/contact" class="interactive">{{ t('nav.contact') }}</router-link></li>
         </ul>
       </nav>
       <div class="header-actions">
-        <!-- Language Switcher -->
         <div class="lang-switch">
           <button 
             class="lang-btn" 
@@ -28,7 +26,6 @@
           >EN</button>
         </div>
         
-        <!-- Emitting open-menu to App.vue -->
         <button class="menu-btn interactive" @click="$emit('open-menu')">{{ t('nav.menu') }} <span class="hamburger"></span></button>
       </div>
     </div>
@@ -69,6 +66,7 @@ const { t, locale, setLocale } = useI18n();
 .nav ul {
   display: flex;
   gap: 2rem;
+  margin-left: 100px;
 }
 
 .nav a {

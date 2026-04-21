@@ -7,21 +7,18 @@
       </div>
       
       <div class="grid">
-        <!-- Dynamic Project Cards -->
         <article 
           class="project-card interactive" 
-          v-for="project in projects" 
+          v-for="project in projects.slice(0, 4)" 
           :key="project.id" 
           ref="cardsRef"
           @click="openProject(project.id)"
         >
           <div class="card-media">
-            <!-- Project Image -->
             <div class="media-placeholder">
               <img :src="project.image" :alt="project.title">
             </div>
             
-            <!-- Hover Overlay -->
             <div class="card-overlay">
               <div class="overlay-left">
                 <span class="overlay-label">{{ t(project.label) }}</span>
@@ -128,10 +125,9 @@ onMounted(() => {
 .icon-link {
   text-decoration: none;
   color: inherit;
-  pointer-events: all; /* Important since parent has pointer-events: none */
+  pointer-events: all; 
 }
 
-/* MEDIA & OVERLAY */
 .card-media {
   width: 100%;
   aspect-ratio: 4/3;
@@ -153,7 +149,6 @@ onMounted(() => {
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Makes image objects fit via media-placeholder context if added */
 .media-placeholder :deep(img),
 .media-placeholder :deep(video) {
   width: 100%;
@@ -164,7 +159,6 @@ onMounted(() => {
   left: 0;
 }
 
-/* Hover overlay setup */
 .card-overlay {
   position: absolute;
   top: 0;
@@ -179,15 +173,15 @@ onMounted(() => {
   align-items: flex-end;
   padding: 1.5rem;
   color: white;
-  pointer-events: none; /* Let the card handle clicks */
+  pointer-events: none; 
 }
 
 .project-card:hover .media-placeholder {
-  transform: scale(1.05); /* Slight image zoom on hover */
+  transform: scale(1.05); 
 }
 
 .project-card:hover .card-overlay {
-  opacity: 1; /* Fade in dark gradient and icons */
+  opacity: 1;
 }
 
 .overlay-left {

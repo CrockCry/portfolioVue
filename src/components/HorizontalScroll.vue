@@ -5,7 +5,7 @@
       <div class="h-scroll-content" ref="contentRef">
         
         <router-link 
-          v-for="project in projects" 
+          v-for="project in displayedProjects" 
           :key="project.id" 
           :to="`/project/${project.id}`"
           class="h-slide interactive"
@@ -32,6 +32,9 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const { locale } = useI18n();
+
+// Shuffle projects for randomized display
+const displayedProjects = ref([...projects].sort(() => Math.random() - 0.5));
 
 gsap.registerPlugin(ScrollTrigger);
 

@@ -1,7 +1,6 @@
 import project1 from '../assets/bookShop.png';
 import project2 from '../assets/TradiPain.png';
-import project3 from '../assets/project-3.png';
-import project4 from '../assets/project-4.png';
+import project3 from '../assets/portifolio.png';
 
 export const projects = [
   {
@@ -31,20 +30,20 @@ export const projects = [
     },
     features: [
       {
-        title: { 'pt-br': 'Layout Editorial', 'en': 'Editorial Layout' },
-        description: {
-          'pt-br': 'Tipografia grande e espaços generosos para imitar uma revista física.',
-          'en': 'Large typography and generous whitespace to mimic a physical magazine.'
-        },
-        image: project1
+         title: { 'pt-br': 'Layout Editorial', 'en': 'Editorial Layout' },
+         description: {
+           'pt-br': 'Tipografia grande e espaços generosos para imitar uma revista física.',
+           'en': 'Large typography and generous whitespace to mimic a physical magazine.'
+         },
+         image: project1
       },
       {
-        title: { 'pt-br': 'Interações Fluidas', 'en': 'Smooth Interactions' },
-        description: {
-          'pt-br': 'Transições suaves entre estados usando GSAP e Lenis.',
-          'en': 'Fluid transitions between states using GSAP and Lenis.'
-        },
-        image: project1
+         title: { 'pt-br': 'Interações Fluidas', 'en': 'Smooth Interactions' },
+         description: {
+           'pt-br': 'Transições suaves entre estados usando GSAP e Lenis.',
+           'en': 'Fluid transitions between states using GSAP and Lenis.'
+         },
+         image: project1
       }
     ],
     tags: [
@@ -112,51 +111,28 @@ export const projects = [
     ]
   },
   {
-    id: 'scandinavian-furniture',
-    title: 'Scandinavian Furniture',
-    author: 'Nordic Design',
+    id: 'portfolio-v3',
+    title: 'Minimalist Portfolio V3',
+    author: 'Pedro Vischi',
     image: project3,
-    label: 'label.ecommerce',
-    link: '#',
-    category: {
-      'pt-br': 'Interiores',
-      'en': 'Interiors'
-    },
-    date: 'Feb 2026',
-    description: {
-      'pt-br': 'Limpo, funcional e bonito. Um catálogo desenhado para combinar com os princípios do mobiliário nórdico.',
-      'en': 'Clean, functional, and beautiful. A catalogue designed to match the principles of Nordic furniture.'
-    },
-    tags: [
-      { label: 'Vue.js' },
-      { label: 'Tailwind' },
-      { label: 'Vite' },
-      { label: 'E-commerce' },
-      { label: 'Minimal' }
-    ]
-  },
-  {
-    id: 'creative-agency',
-    title: 'Creative Agency Portfolio',
-    author: 'Pixel Perfect',
-    image: project4,
     label: 'label.website',
     link: '#',
     category: {
-      'pt-br': 'Corporativo',
-      'en': 'Corporate'
+      'pt-br': 'Identidade Digital',
+      'en': 'Digital Identity'
     },
-    date: 'Jan 2026',
+    date: 'Apr 2026',
     description: {
-      'pt-br': 'Um portfólio ousado e futurista para uma agência criativa focada no digital.',
-      'en': 'A bold, futuristic portfolio for a digital-first creative agency.'
+      'pt-br': 'Um portfólio de alto nível focado em performance e storytelling visual, utilizando Vue 3, GSAP para animações e Lenis para scroll suave.',
+      'en': 'A high-level portfolio focused on performance and visual storytelling, using Vue 3, GSAP for animations, and Lenis for smooth scrolling.'
     },
     tags: [
-      { label: 'Next.js' },
-      { label: 'Framer Motion' },
-      { label: 'Figma' },
-      { label: 'UI/UX' },
-      { label: 'Product Design' }
+      { label: 'Vue 3' },
+      { label: 'GSAP' },
+      { label: 'Lenis' },
+      { label: 'i18n' },
+      { label: 'SPA' },
+      { label: 'Editorial' }
     ]
   }
 ];

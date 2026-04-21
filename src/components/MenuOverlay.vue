@@ -11,12 +11,7 @@
           </li>
           <li class="menu-item">
             <div class="reveal-text">
-              <router-link to="/directory" class="reveal-inner menu-link interactive" @click="closeMenu">{{ t('menu.projects') }}</router-link>
-            </div>
-          </li>
-          <li class="menu-item">
-            <div class="reveal-text">
-              <router-link to="/studio" class="reveal-inner menu-link interactive" @click="closeMenu">{{ t('menu.studio') }}</router-link>
+              <router-link to="/projects" class="reveal-inner menu-link interactive" @click="closeMenu">{{ t('menu.projects') }}</router-link>
             </div>
           </li>
           <li class="menu-item">
@@ -30,7 +25,7 @@
         <div class="reveal-text">
           <div class="reveal-inner menu-footer-content">
             <p>{{ t('menu.ready') }}</p>
-            <router-link to="mailto:pedrovischisoares@gmail.com" class="interactive">pedrovischisoares@gmail.com</router-link>
+            <a href="mailto:pedrovischisoares@gmail.com" class="interactive">pedrovischisoares@gmail.com</a>
           </div>
         </div>
       </div>
