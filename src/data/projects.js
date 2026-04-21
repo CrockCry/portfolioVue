@@ -116,7 +116,7 @@ export const projects = [
     author: 'Pedro Vischi',
     image: project3,
     label: 'label.website',
-    link: '#',
+    link: 'https://portfolio-vue-one-nu.vercel.app/',
     category: {
       'pt-br': 'Identidade Digital',
       'en': 'Digital Identity'
