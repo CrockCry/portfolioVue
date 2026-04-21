@@ -4,12 +4,20 @@
       <!-- Mudar de direção (scroll horizontal) -->
       <div class="h-scroll-content" ref="contentRef">
         
-        <div class="h-slide interactive" v-for="i in 5" :key="i">
-          <div class="media-placeholder" data-type="image">
-            <span>Galeria Img {{ i }}</span>
+        <router-link 
+          v-for="project in projects" 
+          :key="project.id" 
+          :to="`/project/${project.id}`"
+          class="h-slide interactive"
+        >
+          <div class="media-placeholder">
+            <img :src="project.image" :alt="project.title">
           </div>
-          <p class="slide-caption">Projeto de Destaque {{ i }}</p>
-        </div>
+          <div class="slide-info">
+            <p class="slide-category">{{ project.category[locale] }}</p>
+            <h3 class="slide-title">{{ project.title }}</h3>
+          </div>
+        </router-link>
 
       </div>
     </div>
@@ -18,8 +26,12 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import { projects } from '../data/projects';
+import { useI18n } from '../i18n';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+const { locale } = useI18n();
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -78,6 +90,11 @@ onMounted(() => {
   gap: 1rem;
 }
 
+.item-link, .h-slide {
+  text-decoration: none;
+  color: inherit;
+}
+
 .media-placeholder {
   width: 100%;
   aspect-ratio: 16/9;
@@ -86,19 +103,36 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   border-radius: 4px;
-  font-family: var(--font-primary);
-  font-size: 2rem;
-  color: #888;
+  overflow: hidden;
   transition: transform var(--transition);
+}
+
+.media-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .h-slide:hover .media-placeholder {
   transform: scale(0.98);
 }
 
-.slide-caption {
+.slide-info {
+  margin-top: 1rem;
+}
+
+.slide-category {
   font-family: var(--font-secondary);
-  font-size: 1.2rem;
-  opacity: 0.8;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin-bottom: 0.5rem;
+}
+
+.slide-title {
+  font-family: var(--font-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 </style>

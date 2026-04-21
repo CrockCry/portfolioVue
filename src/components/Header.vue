@@ -2,12 +2,12 @@
   <header class="header">
     <div class="container header-inner">
       <div class="logo">
-        <a href="/">N.S</a>
+        <router-link to="/">N.S</router-link>
       </div>
       <nav class="nav">
         <ul>
           <li><a href="#" class="interactive">{{ t('nav.explore') }}</a></li>
-          <li><a href="#" class="interactive">{{ t('nav.directory') }}</a></li>
+          <li><router-link to="/directory" class="interactive">{{ t('nav.directory') }}</router-link></li>
           <li><a href="#" class="interactive">{{ t('nav.academy') }}</a></li>
           <li><a href="#" class="interactive">{{ t('nav.conferences') }}</a></li>
         </ul>

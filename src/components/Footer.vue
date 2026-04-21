@@ -21,9 +21,9 @@
       <div class="footer-bottom">
         <p>&copy; 2026 Next Stage. {{ t('footer.copy') }}</p>
         <div class="social-links">
-          <a href="#" class="interactive">Instagram</a>
-          <a href="#" class="interactive">Github</a>
-          <a href="#" class="interactive">Whatsapp</a>
+          <a href="https://www.instagram.com/siv_pdro/" class="interactive">Instagram</a>
+          <a href="https://github.com/crockcry" class="interactive">Github</a>
+          <a href="https://wa.me/5511965786713?text=Olá! Vi seu portfólio e gostaria de conversar." class="interactive">Whatsapp</a>
         </div>
       </div>
     </div>

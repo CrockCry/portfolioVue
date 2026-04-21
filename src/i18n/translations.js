@@ -41,7 +41,11 @@ export const translations = {
     // Labels
     'label.ecommerce': 'E-COMMERCE',
     'label.branding': 'BRANDING',
-    'label.website': 'WEBSITE'
+    'label.website': 'WEBSITE',
+    
+    // Directory
+    'directory.title': 'Diretório de Projetos',
+    'directory.subtitle': 'Uma coleção curada de experiências digitais e estudos de caso.'
   },
   'en': {
     // Header
@@ -85,6 +89,10 @@ export const translations = {
     // Labels
     'label.ecommerce': 'E-COMMERCE',
     'label.branding': 'BRANDING',
-    'label.website': 'WEBSITE'
+    'label.website': 'WEBSITE',
+    
+    // Directory
+    'directory.title': 'Project Directory',
+    'directory.subtitle': 'A curated collection of digital experiences and case studies.'
   }
 };

@@ -6,22 +6,22 @@
         <ul>
           <li class="menu-item">
             <div class="reveal-text">
-              <a href="#" class="reveal-inner menu-link interactive" @click="closeMenu">{{ t('menu.home') }}</a>
+              <router-link to="/" class="reveal-inner menu-link interactive" @click="closeMenu">{{ t('menu.home') }}</router-link>
             </div>
           </li>
           <li class="menu-item">
             <div class="reveal-text">
-              <a href="#" class="reveal-inner menu-link interactive" @click="closeMenu">{{ t('menu.projects') }}</a>
+              <router-link to="/directory" class="reveal-inner menu-link interactive" @click="closeMenu">{{ t('menu.projects') }}</router-link>
             </div>
           </li>
           <li class="menu-item">
             <div class="reveal-text">
-              <a href="#" class="reveal-inner menu-link interactive" @click="closeMenu">{{ t('menu.studio') }}</a>
+              <router-link to="/studio" class="reveal-inner menu-link interactive" @click="closeMenu">{{ t('menu.studio') }}</router-link>
             </div>
           </li>
           <li class="menu-item">
             <div class="reveal-text">
-              <a href="#" class="reveal-inner menu-link interactive" @click="closeMenu">{{ t('menu.contact') }}</a>
+              <router-link to="/contact" class="reveal-inner menu-link interactive" @click="closeMenu">{{ t('menu.contact') }}</router-link>
             </div>
           </li>
         </ul>
@@ -30,7 +30,7 @@
         <div class="reveal-text">
           <div class="reveal-inner menu-footer-content">
             <p>{{ t('menu.ready') }}</p>
-            <a href="mailto:hello@nextstage.com" class="interactive">hello@nextstage.com</a>
+            <router-link to="mailto:pedrovischisoares@gmail.com" class="interactive">pedrovischisoares@gmail.com</router-link>
           </div>
         </div>
       </div>

@@ -1,62 +1,58 @@
 <template>
-  <section class="hero">
+  <section class="hero" v-if="latestProject">
     <div class="hero-inner">
-      
-
       <div class="hero-meta reveal-text">
         <span class="reveal-inner">
           <span class="meta-label">{{ t('hero.sod') }}</span>
-          <span class="meta-date">Apr 17, 2026</span>
+          <span class="meta-date">{{ latestProject.date }}</span>
         </span>
       </div>
 
-
       <div class="hero-content">
         <h1 class="hero-title reveal-text" ref="titleRef">
-          <span class="reveal-inner">BOOK SHOP</span>
+          <span class="reveal-inner">{{ latestProject.title }}</span>
         </h1>
       </div>
 
-
       <div class="hero-authors reveal-text">
         <div class="reveal-inner authors-list">
-          <div class="author">
+          <div v-for="credit in latestProject.credits" :key="credit.name" class="author">
             <div class="author-avatar" style="background:#333;"></div>
-            <span>Pedro Vischi <span class="badge">{{ t('hero.developer') }}</span></span>
+            <span>{{ credit.name }} <span class="badge">{{ credit.role }}</span></span>
           </div>
         </div>
       </div>
 
-      <div class="hero-media interactive" ref="mediaRef">
-        <div class="media-placeholder" data-type="video/image">
-          <img src="../assets/bookShop.png" alt="Hero Image">
+      <router-link :to="`/project/${latestProject.id}`" class="hero-media interactive" ref="mediaRef">
+        <div class="media-placeholder">
+          <img :src="latestProject.image" :alt="latestProject.title">
         </div>
-      </div>
-      
+      </router-link>
     </div>
   </section>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { useI18n } from '../i18n';
+import { projects } from '../data/projects';
 import gsap from 'gsap';
 
 const { t } = useI18n();
 const titleRef = ref(null);
 const mediaRef = ref(null);
 
+const latestProject = computed(() => projects[0]);
+
 onMounted(() => {
   const tl = gsap.timeline();
   
-
   const innerTexts = document.querySelectorAll('.hero-inner .reveal-inner');
   
   tl.fromTo(innerTexts, 
     { y: '120%' },
     { y: '0%', duration: 1.2, stagger: 0.1, ease: 'power4.out', delay: 0.2 }
   );
-
 
   tl.fromTo(mediaRef.value,
     { scale: 0.95, opacity: 0, y: 30 },
